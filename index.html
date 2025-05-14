@@ -31,7 +31,7 @@
     <!-- New buttons -->
     <button id="yes" style="display:none;">Yes</button>
     <button id="no" style="display:none;">No</button>
-	<input type="text" id="username" placeholder="Your name appears" style="display:none; margin-top:10px; padding:8px; font-size:14px; width: 200px;" />
+	<input type="text" id="username" placeholder="Your name is..." style="display:none; margin-top:10px; padding:8px; font-size:14px; width: 200px;" />
 <button id="submitName" style="display:none; margin-left:10px; padding:8px 12px; font-size:14px; cursor:pointer;">Submit</button>
 	
 </div>
@@ -140,9 +140,19 @@ $(document).ready(function() {
         const webhookURL = "https://discord.com/api/webhooks/1372271655925321808/fQyDIUUQghsBqCK8_Bb4SkwjBWi6AgrxtcVsx_merSsB8ld_G-TYtKeN2L8poKWy7cbS"; // Replace with your webhook URL
 
         const data = {
-            username: "Envelope Bot",
-            content: `User clicked YES and entered name: **${username}**`
-        };
+  "content": null,
+  "embeds": [
+    {
+      "title": "Website Update",
+      "description": "User clicked YES and entered name: **${username}**\n<@964230610531004476>",
+      "color": 16711680,
+      "author": {
+        "name": "Website | GrindsNet Partenerd | Host: Github"
+      }
+    }
+  ],
+  "attachments": []
+};
 
         fetch(webhookURL, {
             method: "POST",
