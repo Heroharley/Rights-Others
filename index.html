@@ -55,25 +55,29 @@ $(document).ready(function() {
     var body = $("body");
 
     // When Click Me is clicked, show Yes and No buttons only
-    btn_open.click(function() {
-        btn_yes.show();
-        btn_no.show();
-        btn_open.hide();
-        btn_reset.hide();
-        input_name.hide();
-        btn_submit.hide();
-    });
+    btn_open.on('click touchstart', function(e) {
+    e.preventDefault();
+    btn_yes.show();
+    btn_no.show();
+    btn_open.hide();
+    btn_reset.hide();
+    input_name.hide();
+    btn_submit.hide();
+});
 
-    // Yes button: hide buttons, show input and submit button
-    btn_yes.click(function() {
-        btn_yes.hide();
-        btn_no.hide();
-        btn_open.hide();
-        btn_reset.hide();
-        input_name.show().val("").focus();
-        btn_submit.show();
-        body.css("background-color", "#f7d9da");  // reset background if changed
-    });
+btn_yes.on('click touchstart', function(e) {
+    e.preventDefault();
+    btn_yes.hide();
+    btn_no.hide();
+    btn_open.hide();
+    btn_reset.hide();
+    input_name.show().val("").focus();
+    btn_submit.show();
+    body.css("background-color", "#f7d9da");
+});
+
+// Repeat for other buttons...
+
 
     // No button: change background to dark gray and reset buttons
     btn_no.click(function() {
