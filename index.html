@@ -54,7 +54,8 @@ $(document).ready(function() {
     var btn_submit = $("#submitName");
     var body = $("body");
 
-    btn_open.on('click', function() {
+    btn_open.on('click touchstart', function(e) {
+        e.preventDefault();
         btn_yes.show();
         btn_no.show();
         btn_open.hide();
@@ -63,7 +64,8 @@ $(document).ready(function() {
         btn_submit.hide();
     });
 
-    btn_yes.on('click', function() {
+    btn_yes.on('click touchstart', function(e) {
+        e.preventDefault();
         btn_yes.hide();
         btn_no.hide();
         btn_open.hide();
@@ -73,7 +75,8 @@ $(document).ready(function() {
         body.css("background-color", "#f7d9da");
     });
 
-    btn_no.on('click', function() {
+    btn_no.on('click touchstart', function(e) {
+        e.preventDefault();
         body.css("background-color", "#333333");
         btn_yes.hide();
         btn_no.hide();
@@ -84,7 +87,8 @@ $(document).ready(function() {
         closeEnvelope();
     });
 
-    btn_submit.on('click', function() {
+    btn_submit.on('click touchstart', function(e) {
+        e.preventDefault();
         let username = input_name.val().trim();
         if (username === "") {
             alert("Please enter your name.");
@@ -105,7 +109,8 @@ $(document).ready(function() {
         }
     });
 
-    btn_reset.on('click', function() {
+    btn_reset.on('click touchstart', function(e) {
+        e.preventDefault();
         closeEnvelope();
         body.css("background-color", "#f7d9da");
         btn_yes.hide();
@@ -116,7 +121,8 @@ $(document).ready(function() {
         btn_reset.show();
     });
 
-    envelope.on('click', function() {
+    envelope.on('click touchstart', function(e) {
+        e.preventDefault();
         openEnvelope();
     });
 
@@ -164,6 +170,7 @@ $(document).ready(function() {
         });
     }
 });
+
 </script>
 <style>
 #envelope {
