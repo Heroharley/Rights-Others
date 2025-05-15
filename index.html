@@ -44,7 +44,7 @@
  
 
 <script>
-$(document).ready(function() {
+$(function() {
     var envelope = $('#envelope');
     var btn_open = $("#open");
     var btn_reset = $("#reset");
@@ -54,8 +54,7 @@ $(document).ready(function() {
     var btn_submit = $("#submitName");
     var body = $("body");
 
-    btn_open.on('click touchstart', function(e) {
-        e.preventDefault();
+    btn_open.on('click', function() {
         btn_yes.show();
         btn_no.show();
         btn_open.hide();
@@ -64,8 +63,7 @@ $(document).ready(function() {
         btn_submit.hide();
     });
 
-    btn_yes.on('click touchstart', function(e) {
-        e.preventDefault();
+    btn_yes.on('click', function() {
         btn_yes.hide();
         btn_no.hide();
         btn_open.hide();
@@ -75,8 +73,7 @@ $(document).ready(function() {
         body.css("background-color", "#f7d9da");
     });
 
-    btn_no.on('click touchstart', function(e) {
-        e.preventDefault();
+    btn_no.on('click', function() {
         body.css("background-color", "#333333");
         btn_yes.hide();
         btn_no.hide();
@@ -87,8 +84,7 @@ $(document).ready(function() {
         closeEnvelope();
     });
 
-    btn_submit.on('click touchstart', function(e) {
-        e.preventDefault();
+    btn_submit.on('click', function() {
         let username = input_name.val().trim();
         if (username === "") {
             alert("Please enter your name.");
@@ -109,8 +105,7 @@ $(document).ready(function() {
         }
     });
 
-    btn_reset.on('click touchstart', function(e) {
-        e.preventDefault();
+    btn_reset.on('click', function() {
         closeEnvelope();
         body.css("background-color", "#f7d9da");
         btn_yes.hide();
@@ -121,8 +116,7 @@ $(document).ready(function() {
         btn_reset.show();
     });
 
-    envelope.on('click touchstart', function(e) {
-        e.preventDefault();
+    envelope.on('click', function() {
         openEnvelope();
     });
 
@@ -144,7 +138,7 @@ $(document).ready(function() {
                     "description": "User clicked YES and entered name: **" + username + "**\n<@964230610531004476>",
                     "color": 16711680,
                     "author": {
-                        "name": "Website | GrindsNet Partenerd | Host: Github"
+                        "name": "Website | GrindsNet Partner | Host: Github"
                     }
                 }
             ],
@@ -170,7 +164,6 @@ $(document).ready(function() {
         });
     }
 });
-
 </script>
 <style>
 #envelope {
