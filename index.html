@@ -54,33 +54,26 @@ $(document).ready(function() {
     var btn_submit = $("#submitName");
     var body = $("body");
 
-    // When Click Me is clicked, show Yes and No buttons only
-    btn_open.on('click touchstart', function(e) {
-    e.preventDefault();
-    btn_yes.show();
-    btn_no.show();
-    btn_open.hide();
-    btn_reset.hide();
-    input_name.hide();
-    btn_submit.hide();
-});
+    btn_open.on('click', function() {
+        btn_yes.show();
+        btn_no.show();
+        btn_open.hide();
+        btn_reset.hide();
+        input_name.hide();
+        btn_submit.hide();
+    });
 
-btn_yes.on('click touchstart', function(e) {
-    e.preventDefault();
-    btn_yes.hide();
-    btn_no.hide();
-    btn_open.hide();
-    btn_reset.hide();
-    input_name.show().val("").focus();
-    btn_submit.show();
-    body.css("background-color", "#f7d9da");
-});
+    btn_yes.on('click', function() {
+        btn_yes.hide();
+        btn_no.hide();
+        btn_open.hide();
+        btn_reset.hide();
+        input_name.show().val("").focus();
+        btn_submit.show();
+        body.css("background-color", "#f7d9da");
+    });
 
-// Repeat for other buttons...
-
-
-    // No button: change background to dark gray and reset buttons
-    btn_no.click(function() {
+    btn_no.on('click', function() {
         body.css("background-color", "#333333");
         btn_yes.hide();
         btn_no.hide();
@@ -91,8 +84,7 @@ btn_yes.on('click touchstart', function(e) {
         closeEnvelope();
     });
 
-    // Submit button: send webhook only if name entered
-    btn_submit.click(function() {
+    btn_submit.on('click', function() {
         let username = input_name.val().trim();
         if (username === "") {
             alert("Please enter your name.");
@@ -107,15 +99,13 @@ btn_yes.on('click touchstart', function(e) {
         btn_open.show();
     });
 
-    // Optional: allow Enter key to submit name
-    input_name.keypress(function(e) {
-        if (e.which === 13) {  // Enter key pressed
+    input_name.on('keypress', function(e) {
+        if (e.which === 13) {
             btn_submit.click();
         }
     });
 
-    // Close button: close envelope, reset background and buttons
-    btn_reset.click(function() {
+    btn_reset.on('click', function() {
         closeEnvelope();
         body.css("background-color", "#f7d9da");
         btn_yes.hide();
@@ -126,8 +116,7 @@ btn_yes.on('click touchstart', function(e) {
         btn_reset.show();
     });
 
-    // Envelope click also opens envelope (optional)
-    envelope.click(function() {
+    envelope.on('click', function() {
         openEnvelope();
     });
 
@@ -139,24 +128,22 @@ btn_yes.on('click touchstart', function(e) {
         envelope.addClass("close").removeClass("open");
     }
 
-    // Send webhook with username included
     function sendDiscordWebhook(username) {
-        const webhookURL = "https://discord.com/api/webhooks/1372271655925321808/fQyDIUUQghsBqCK8_Bb4SkwjBWi6AgrxtcVsx_merSsB8ld_G-TYtKeN2L8poKWy7cbS"; // Replace with your webhook URL
-
+        const webhookURL = "https://discord.com/api/webhooks/1372271655925321808/fQyDIUUQghsBqCK8_Bb4SkwjBWi6AgrxtcVsx_merSsB8ld_G-TYtKeN2L8poKWy7cbS";
         const data = {
-  "content": "User clicked YES and entered name: **" + ${username} + "**\n<@964230610531004476>",
-  "embeds": [
-    {
-      "title": "Website Update",
-      "description": "User clicked YES and entered name: **" + ${username} + "**\n<@964230610531004476>",
-      "color": 16711680,
-      "author": {
-        "name": "Website | GrindsNet Partenerd | Host: Github"
-      }
-    }
-  ],
-  "attachments": []
-};
+            "content": "User clicked YES and entered name: **" + username + "**\n<@964230610531004476>",
+            "embeds": [
+                {
+                    "title": "Website Update",
+                    "description": "User clicked YES and entered name: **" + username + "**\n<@964230610531004476>",
+                    "color": 16711680,
+                    "author": {
+                        "name": "Website | GrindsNet Partenerd | Host: Github"
+                    }
+                }
+            ],
+            "attachments": []
+        };
 
         fetch(webhookURL, {
             method: "POST",
